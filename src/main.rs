@@ -20,11 +20,12 @@ fn main() {
     // println!("z is {:?}", z);
 
     // counter variable
-    let mut n = 1;
+    let mut n = i64::MAX;
+    let mut counter = 0;
 
     // loop while 'n' is less than 1001
-    while n < 101 {
-        if n % 15 = 0 {
+    while n > 0 {
+        if n % 15 == 0 {
             println!("fizzbuzz");
         } else if n % 3 == 0 {
             println!("fizz");
@@ -32,6 +33,8 @@ fn main() {
             println!("buzz");
         }
         
-        n += 1;
+        println!("{}", counter);
+        counter += 1;
+        n -= 1;
     }
 }
