@@ -1,40 +1,87 @@
+use std::fmt;
+
 fn main() {
-    // variable binding
-    let x = 5u32;
 
-    // expression;
-    let y = {
-        let x_sqrd = x * x;
-        let x_cube = x_sqrd * x;
-
-        // This expression will be assigned to `y`
-        x_cube + x_sqrd + x
-    };
-
-    let z = {
-        2 * x;
-    };
-
-    // println!("x is {:?}", x);
-    // println!("y is {:?}", y);
-    // println!("z is {:?}", z);
-
-    // counter variable
-    let mut n = i64::MAX;
-    let mut counter = 0;
-
-    // loop while 'n' is less than 1001
-    while n > 0 {
-        if n % 15 == 0 {
-            println!("fizzbuzz");
-        } else if n % 3 == 0 {
-            println!("fizz");
-        } else if n % 5 == 0 {
-            println!("buzz");
-        }
-        
-        println!("{}", counter);
-        counter += 1;
-        n -= 1;
+    struct Point {
+        x: f64,
+        y: f64,
     }
+
+    // Implementation block, all 'Point' associated functions/methods go here
+    impl Point {
+        // This is an 'associated function' because
+        // associated w/ a type, 'Point'.
+        fn origin() -> Point { Point { x: 0.0, y: 0.0 } }
+
+        fn new(x: f64, y: f64) -> Point { 
+            Point { x: x, y: y }}
+
+        fn diagonal(xy: f64) -> Point {
+            Self::new(xy, xy)
+        }
+    }
+    
+    struct ColorCube {
+        x: f64,
+        y: f64,
+        z: f64,
+        color: String
+    }
+
+    impl ColorCube {
+        fn new (x: f64, y: f64, z: f64, color: &str) -> ColorCube {
+            ColorCube { x: x, y: y, z: z, color: color } 
+            }
+        fn funky_blue_gen() -> ColorCube {
+            ColorCube { x: 3.2, y: 4.6, z: 2.4, color: "funky blue"}
+        }
+    }
+
+    let funky_blue_color_cube == funky_blue_gen();
+    println!("the color cube is *# fUnKy #** with coordinates {}, {}, {} & color {}");
+
+    impl fmt::Display for ColorCube {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "({}. {}. {}. {})", self.x, self.y, self.z, self.color)
+        }
+    }
+
+    struct Rect {
+        x: f64,
+        y: f64,
+    }
+    
+    impl Rect {
+    fn new (x: f64, y: f64) -> Rect {
+        Rect { x: x, y: y }
+    }
+    fn gen_square(l: f64) -> Rect {
+            Rect { x: l, y: l }
+        }
+    }
+
+    let square_one = Rect::gen_square(7.2);
+    println!("square is {}", square_one);
+
+
+    impl fmt::Display for Rect {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "({}. {})", self.x, self.y)
+        }
+    }
+
+
+
+    // Implement Display for Point
+    impl fmt::Display for Point {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "({}, {})", self.x, self.y)
+        }
+    }
+
+    let origin = Point::origin();
+    let point_one = Point::new(2.46, 2.14);
+    let point_two = Point::diagonal(4.6);
+
+    println!("point_one is {} - point_two is {} - origin is {}", point_one, point_two, origin);
 }
